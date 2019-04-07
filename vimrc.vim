@@ -2,21 +2,28 @@
 
 let mapleader=","       " leader is comma instead of \
 
-syntax enable           " enable syntax processing
-set tabstop=4       " number of visual spaces per TAB
-set softtabstop=4   " number of spaces in tab when editing
-set expandtab       " tabs are spaces
-set number              " show line numbers
-set showcmd             " show command in bottom bar
-set cursorline          " highlight current line
-filetype indent on      " load filetype-specific indent files
-set wildmenu            " visual autocomplete for command menu
-set lazyredraw          " redraw only when we need to.
-set showmatch           " highlight matching [{()}]
-set incsearch           " search as characters are entered
-set hlsearch            " highlight matches
-set backspace=indent,eol,start
+syntax enable                     " enable syntax processing
+set tabstop=4                     " number of visual spaces per TAB
+set softtabstop=4                 " number of spaces in tab when editing
+set expandtab                     " tabs are spaces
+set number                        " show line numbers
+set showcmd                       " show command in bottom bar
+set cursorline                    " highlight current line
+set wildmenu                      " visual autocomplete for command menu
+set lazyredraw                    " redraw only when we need to.
+set showmatch                     " highlight matching [{()}]
+set incsearch                     " search as characters are entered
+set hlsearch                      " highlight matches
+set smartcase                     " When searching try to be smart about cases
+set backspace=indent,eol,start    " Configure backspace so it acts as it should act
+set ruler                         " Always show current position
+set foldcolumn=1                  " Add a bit extra margin to the left
+set smarttab                      " Be smart when using tabs
 
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
 
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -38,6 +45,19 @@ nnoremap L $
 nnoremap J G
 nnoremap K gg
 
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" For regular expressions turn magic on
+set magic
+
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
 
 " General Vim settings
 "	set autoindent
