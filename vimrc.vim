@@ -1,5 +1,5 @@
 " Ref: https://dougblack.io/words/a-good-vimrc.html
-" https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
+" Ref: https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
 
 let mapleader=","       " leader is comma instead of \
 
