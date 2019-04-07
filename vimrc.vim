@@ -46,6 +46,9 @@ filetype indent on
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
+" Ability to cancel a search with Escape:
+nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+
 nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 nnoremap <C-c> :set norelativenumber<CR>:set nonumber<CR>:echo "Line numbers turned off."<CR>
 nnoremap <C-n> :set relativenumber<CR>:set number<CR>:echo "Line numbers turned on."<CR>
