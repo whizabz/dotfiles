@@ -47,7 +47,7 @@ filetype indent on
 nnoremap <leader><space> :nohlsearch<CR>
 
 " Ability to cancel a search with Escape:
-nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+" nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 
 nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 nnoremap <C-c> :set norelativenumber<CR>:set nonumber<CR>:echo "Line numbers turned off."<CR>
