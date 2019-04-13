@@ -1,11 +1,8 @@
-" Ref: https://dougblack.io/words/a-good-vimrc.html
-" Ref: https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
-
-let mapleader=","       " leader is comma instead of \
+let mapleader=","                 " leader is comma (,) instead of whack (\)
 
 syntax enable                     " enable syntax processing
-set tabstop=4                     " Indent using four spaces
-set softtabstop=4                 " number of spaces in tab when editing
+set tabstop=2                     " Indent using 2 spaces
+set softtabstop=2                 " number of spaces in tab when editing
 set expandtab                     " tabs are spaces
 set number                        " show line numbers
 set showcmd                       " show command in bottom bar
@@ -18,46 +15,66 @@ set hlsearch                      " highlight matches
 set smartcase                     " When searching try to be smart about cases
 set backspace=indent,eol,start    " Allow backspacing over indention, line breaks and insertion start
 set ruler                         " Always show current position
-set foldcolumn=1                  " Add a bit extra margin to the left
 set smarttab                      " Insert “tabstop” number of spaces when the “tab” key is pressed
-set spell                         " Enable spellchecking
 set autoread                      " Automatically re-read files if unmodified inside Vim
 set confirm                       " Display a confirmation dialog when closing an unsaved file
 set history=1000                  " Increase the undo limit
-set foldmethod=indent             " Fold based on indention levels
 set foldnestmax=3                 " Only fold up to three nested levels
 set nofoldenable                  " Disable folding by default
-set mouse=a                       " Enable mouse for scrolling and resizing.
-set laststatus=2                  " Always display the status bar
-" set relativenumber                " Show line number on the current line and relative numbers on all other lines
 set scrolloff=1                   " The number of screen lines to keep above and below the cursor
+set sidescrolloff=5               " The number of screen columns to keep to the left and right of the cursor
 set display+=lastline             " Always try to show a paragraph’s last line
 set linebreak                     " Avoid wrapping a line in the middle of a word
-set sidescrolloff=5               " The number of screen columns to keep to the left and right of the cursor
-set shiftwidth=4                  " When shifting, indent using four spaces
+set shiftwidth=2                  " When shifting, indent using 2 spaces
 set shiftround                    " When shifting lines, round the indentation to the nearest multiple of “shiftwidth.”
+set showmode                      " Indicates input or replace mode at the bottom
+set whichwrap+=<,>,h,l            " Something to do with backspace-ing
+set mat=2                         " How many tenths of a second to blink when matching brackets
+set laststatus=2                  " Always display the status bar
+set magic                         " For regular expressions turn magic on
+" set mouse=a                       " Enable mouse for scrolling and resizing.
+" set foldcolumn=1                  " Add a bit extra margin to the left
+" set spell                         " Enable spellchecking
+" set foldmethod=indent             " Fold based on indention levels
+" set relativenumber                " Show line number on the current line and relative numbers on all other lines
 " set autoindent                    " New lines inherit the indentation of previous lines.
+" set ignorecase                    " Ignore case while searching
 
+" Turn backup off, since most stuff is in version control anyway
+set nobackup
+set nowb
+set noswapfile
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
 
 " Enable filetype plugins
 filetype plugin on
 filetype indent on
 
-" turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
+""""""""""""""""""""""""""""""""
+" Re-map things for convenience
+""""""""""""""""""""""""""""""""
 
-" Ability to cancel a search with Escape:
-" nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
-
+" Turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>:echo "Search Cleared"<CR>
 nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
-nnoremap <C-c> :set norelativenumber<CR>:set nonumber<CR>:echo "Line numbers turned off."<CR>
-nnoremap <C-n> :set relativenumber<CR>:set number<CR>:echo "Line numbers turned on."<CR>
+
+" Turn on/off line numbers
+nnoremap <C-n> :set nu! nu?<CR>:echo "Line numbers Toggled"<CR>
+" nnoremap <C-c> :set nonumber<CR>:echo "Line numbers turned off"<CR>
+" nnoremap <C-n> :set number<CR>:echo "Line numbers turned on"<CR>
+" nnoremap <C-c> :set norelativenumber<CR>:set nonumber<CR>:echo "Line numbers turned off"<CR>
+" nnoremap <C-n> :set relativenumber<CR>:set number<CR>:echo "Line numbers turned on"<CR>
 
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 
-" Make : commands easier
+" Make ':' commands easier
 nnoremap ; :
 
 " Extreme h-j-k-l
@@ -66,19 +83,32 @@ nnoremap L $
 nnoremap J G
 nnoremap K gg
 
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
+" Map Zs to exit quickly
+nmap zz :q<CR>
+nmap zx :q!<CR>
 
-" For regular expressions turn magic on
-set magic
+if has("autocmd")
+  augroup templates
+    autocmd BufNewFile *.ksh 0r ~/.vim/templates/header.ksh
+  augroup END
+endif
 
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
+" Ability to cancel a search with Escape:
+" nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+
+" Useful Function Key mappings
+" map <F6> <ESC>:%s///g<Left><Left><Left>
+" map <F7> <ESC>:nohlsearch<CR>
+" map <F8> :set nu! nu?<CR>
+" map <F9> <ESC>:w<CR>
+" map <F10> <ESC>:wq<CR>
+" map <F11> <ESC>:q<CR>
+" map <F12> <ESC>:q!<CR>
+
+" Shoutout:
+" https://dougblack.io/words/a-good-vimrc.html
+" https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
+
 
 " General Vim settings
 "	set autoindent
